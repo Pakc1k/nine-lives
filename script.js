@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     stepButton.style.display = "block"; // Show the button
                     stepButton.style.opacity = "1"; // Make sure it's visible
                 }, 1000);
-            }, 2000); // Delay before disappearing
+            }, 1000); // Delay before disappearing
         }
     }
 
