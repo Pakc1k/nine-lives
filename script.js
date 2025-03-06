@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const textContainer = document.getElementById("glitch-text");
+    const stepButton = document.getElementById("step-through");
     let index = 0;
 
     function typeText() {
@@ -39,10 +40,19 @@ document.addEventListener("DOMContentLoaded", function () {
             p.textContent = messages[index];
             p.classList.add("glitch");
             textContainer.appendChild(p);
+            textContainer.style.opacity = "1"; // Make sure text is visible
             index++;
             setTimeout(typeText, 800); // Delay between messages appearing
         } else {
-            document.getElementById("step-through").style.display = "block";
+            setTimeout(() => {
+                textContainer.style.transition = "opacity 1s ease-out";
+                textContainer.style.opacity = "0"; // Fade out all text smoothly
+                setTimeout(() => {
+                    textContainer.innerHTML = ""; // Clear text after fade out
+                    stepButton.style.display = "block"; // Show the button
+                    stepButton.style.opacity = "1"; // Make sure it's visible
+                }, 1000);
+            }, 2000); // Delay before disappearing
         }
     }
 
