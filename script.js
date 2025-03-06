@@ -1,6 +1,16 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name') || "SIGNAL RECEIVER"; // Default if no name
+    const name = urlParams.get("name") || "SIGNAL RECEIVER"; // Default if no name
+
+    // Optional: Restrict access only to approved invitees
+    const allowedNames = ["Ruben", "Alex", "Lili", "Morta", "Ole"];
+    if (!allowedNames.includes(name) && name !== "SIGNAL RECEIVER") {
+        document.body.innerHTML = `
+            <h1 class="glitch">ACCESS DENIED</h1>
+            <p class="glitch">UNAUTHORIZED TRANSMISSION ATTEMPT DETECTED.</p>
+        `;
+        return; // Stop script execution
+    }
 
     const messages = [
         `WELCOME, ${name}.`,
@@ -17,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         `ONLY MOVEMENT. ONLY CONNECTION. ONLY THOSE WHO UNDERSTAND.`,
         `YOU ARE HERE BECAUSE YOU WERE MEANT TO BE.`,
         `THE SIGNAL IS OPEN—BUT ONLY FOR YOU.`,
-        `STEP THROUGH.`
+        `STEP THROUGH.`,
     ];
 
     const textContainer = document.getElementById("glitch-text");
@@ -30,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             p.classList.add("glitch");
             textContainer.appendChild(p);
             index++;
-            setTimeout(typeText, 800); // Delay between messages
+            setTimeout(typeText, 800); // Delay between messages appearing
         } else {
             document.getElementById("step-through").style.display = "block";
         }
