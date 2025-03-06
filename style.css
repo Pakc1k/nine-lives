@@ -20,7 +20,7 @@ body {
     white-space: pre-line;
     line-height: 1.6;
     opacity: 0;
-    animation: fadeIn 2s forwards;
+    animation: fadeIn 3s forwards;
 }
 
 @keyframes fadeIn {
@@ -38,7 +38,7 @@ body {
 }
 
 .glitch {
-    animation: glitch 0.1s infinite;
+    animation: glitch 0.2s infinite;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
 }
 
