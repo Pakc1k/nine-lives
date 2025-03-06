@@ -1,6 +1,6 @@
 body {
     background: black;
-    color: #ff0000;
+    color: #00ff00; /* Neon Green */
     font-family: 'Courier New', monospace;
     text-align: center;
     display: flex;
@@ -39,16 +39,18 @@ body {
 
 .glitch {
     animation: glitch 0.1s infinite;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
 }
 
 #step-through {
     background: none;
-    border: 1px solid #ff0000;
-    color: #ff0000;
+    border: 1px solid #00ff00;
+    color: #00ff00;
     font-size: 16px;
     padding: 10px 20px;
     margin-top: 20px;
     cursor: pointer;
     opacity: 0;
     animation: fadeIn 3s 5s forwards;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; /* Neon button glow */
 }
