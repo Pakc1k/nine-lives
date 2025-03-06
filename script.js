@@ -1,96 +1,60 @@
-/* GENERAL STYLING */
-body {
-    background: black;
-    color: #00ff00; /* Neon Green */
-    font-family: 'Courier New', monospace;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get("name") || "SIGNAL RECEIVER"; // Default if no name
 
-/* CONTAINER */
-.container {
-    width: 90%; /* Make sure content doesn’t touch edges */
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* GLITCH TEXT */
-#glitch-text {
-    font-size: 20px; /* Default for desktop */
-    font-weight: bold;
-    white-space: pre-line;
-    line-height: 1.4;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-    text-align: center;
-    max-height: 70vh; /* Prevents text overflow */
-    overflow-y: auto; /* Allows scrolling if needed */
-}
-
-/* BUTTON */
-#step-through {
-    background: none;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    font-size: 18px;
-    padding: 12px 24px;
-    margin-top: 20px;
-    cursor: pointer;
-    opacity: 0;
-    animation: fadeIn 3s 5s forwards;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
-}
-
-/* TEXT ANIMATIONS */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes glitch {
-    0% { transform: translate(2px, -2px); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, 2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0, 0); }
-}
-
-.glitch {
-    animation: glitch 0.1s infinite;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
-}
-
-/* MOBILE FIXES */
-@media (max-width: 768px) {
-    body {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    // Approved invitees only
+    const allowedNames = ["Ruben", "Alex", "Lili", "Morta", "Ole"];
+    if (!allowedNames.includes(name) && name !== "SIGNAL RECEIVER") {
+        document.body.innerHTML = `
+            <h1 class="glitch">ACCESS DENIED</h1>
+            <p class="glitch">UNAUTHORIZED TRANSMISSION ATTEMPT DETECTED.</p>
+        `;
+        return;
     }
 
-    #glitch-text {
-        font-size: 16px; /* Smaller for mobile */
-        max-height: 60vh; /* Prevents text from taking over the screen */
-        overflow-y: auto;
-        padding: 10px; /* Adds spacing */
+    const messages = [
+        `WELCOME, ${name}.`,
+        `YOU HAVE BEEN CHOSEN.`,
+        `27.03 | BOLICHE UBUD`,
+        `FINAL FREQUENCY BEFORE THE WORLD GOES QUIET.`,
+        `ALL+SIDES // NINE LIVES: A NEW SERIES`,
+        `A HIDDEN TRANSMISSION. A FREQUENCY ONLY FEW WILL HEAR.`,
+        `FREQUENCY OPERATORS:`,
+        `TODJON – SYSTEM ARCHITECT`,
+        `MORTA MOR – SONIC EXPLORER`,
+        `OLE UKENA – GROOVE ENGINEER`,
+        `NO TOURISTS. NO TRENDSETTERS. NO INTERFERENCE.`,
+        `ONLY MOVEMENT. ONLY CONNECTION. ONLY THOSE WHO UNDERSTAND.`,
+        `YOU ARE HERE BECAUSE YOU WERE MEANT TO BE.`,
+        `THE SIGNAL IS OPEN—BUT ONLY FOR YOU.`,
+        `STEP THROUGH.`,
+    ];
+
+    const textContainer = document.getElementById("glitch-text");
+    const stepButton = document.getElementById("step-through");
+    let index = 0;
+
+    function typeText() {
+        if (index < messages.length) {
+            let p = document.createElement("p");
+            p.textContent = messages[index];
+            p.classList.add("glitch");
+            textContainer.appendChild(p);
+            textContainer.style.opacity = "1"; // Ensure text is visible
+            index++;
+            setTimeout(typeText, 800);
+        } else {
+            setTimeout(() => {
+                textContainer.style.transition = "opacity 1s ease-out";
+                textContainer.style.opacity = "0"; // Fade out text
+                setTimeout(() => {
+                    textContainer.innerHTML = ""; // Clear text
+                    stepButton.style.display = "block"; // Show button
+                    stepButton.style.opacity = "1";
+                }, 1000);
+            }, 2000);
+        }
     }
 
-    #step-through {
-        font-size: 16px;
-        padding: 10px 20px;
-    }
-}
+    typeText();
+});
