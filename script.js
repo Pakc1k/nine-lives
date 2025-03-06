@@ -40,10 +40,21 @@ document.addEventListener("DOMContentLoaded", function () {
             p.textContent = messages[index];
             p.classList.add("glitch");
             textContainer.appendChild(p);
+            textContainer.style.opacity = "1"; // Make sure text is visible
             index++;
             setTimeout(typeText, 800); // Delay between messages appearing
         } else {
             setTimeout(() => {
-                textContainer.style.opacity = "0"; // Fade out all text
+                textContainer.style.transition = "opacity 1s ease-out";
+                textContainer.style.opacity = "0"; // Fade out all text smoothly
                 setTimeout(() => {
-                    textContainer.innerHTML = ""; // Clear text after fade
+                    textContainer.innerHTML = ""; // Clear text after fade out
+                    stepButton.style.display = "block"; // Show the button
+                    stepButton.style.opacity = "1"; // Make sure it's visible
+                }, 1000);
+            }, 2000); // Delay before disappearing
+        }
+    }
+
+    typeText();
+});
