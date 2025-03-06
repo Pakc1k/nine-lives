@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const textContainer = document.getElementById("glitch-text");
+    const stepButton = document.getElementById("step-through");
     let index = 0;
 
     function typeText() {
@@ -42,9 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             index++;
             setTimeout(typeText, 800); // Delay between messages appearing
         } else {
-            document.getElementById("step-through").style.display = "block";
-        }
-    }
-
-    typeText();
-});
+            setTimeout(() => {
+                textContainer.style.opacity = "0"; // Fade out all text
+                setTimeout(() => {
+                    textContainer.innerHTML = ""; // Clear text after fade
