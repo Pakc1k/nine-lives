@@ -19,7 +19,7 @@ body {
     font-weight: bold;
     white-space: pre-line;
     line-height: 1.6;
-    opacity: 0;
+    opacity: 1;
     animation: fadeIn 3s forwards;
 }
 
