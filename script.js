@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             setTimeout(() => {
                 textContainer.style.transition = "opacity 1s ease-out";
-                textContainer.style.opacity = "1"; // Fade out all text smoothly
+                textContainer.style.opacity = "0"; // Fade out all text smoothly
                 setTimeout(() => {
                     textContainer.innerHTML = ""; // Clear text after fade out
                     stepButton.style.display = "block"; // Show the button
