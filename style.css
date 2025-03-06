@@ -8,19 +8,26 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
+    padding: 20px; /* Prevent text from touching edges on small screens */
 }
 
 .container {
-    max-width: 600px;
+    max-width: 90vw; /* Make sure it fits mobile screens */
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #glitch-text {
-    font-size: 22px;
+    font-size: 5vw; /* Scales dynamically based on screen size */
     font-weight: bold;
     white-space: pre-line;
-    line-height: 1.6;
+    line-height: 1.4;
     opacity: 0;
     animation: fadeIn 2s forwards;
+    text-align: center;
 }
 
 @keyframes fadeIn {
@@ -45,13 +52,25 @@ body {
 #step-through {
     background: none;
     border: 1px solid #00ff00;
-    border-radius: 15px 50px;
     color: #00ff00;
-    font-size: 16px;
+    font-size: 4vw; /* Adjusts size based on screen */
     padding: 10px 20px;
     margin-top: 20px;
     cursor: pointer;
     opacity: 0;
     animation: fadeIn 3s 5s forwards;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; /* Neon button glow */
+}
+
+/* Make sure text and button stay centered on all screen sizes */
+@media (max-width: 768px) {
+    #glitch-text {
+        font-size: 6vw; /* Slightly bigger text for small screens */
+        line-height: 1.6;
+    }
+
+    #step-through {
+        font-size: 5vw;
+        padding: 12px 24px;
+    }
 }
