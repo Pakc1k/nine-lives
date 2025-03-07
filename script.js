@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(typeText, 800);
         } else {
             setTimeout(() => {
-                textContainer.style.transition = "opacity 1s ease-out";
+                textContainer.style.transition = "opacity 2s ease-out";
                 textContainer.style.opacity = "0"; // Fade out text
                 setTimeout(() => {
                     textContainer.innerHTML = ""; // Clear text
                     stepButton.style.display = "block"; // Show button
                     stepButton.style.opacity = "1";
-                }, 1000);
+                }, 2000);
             }, 2000);
         }
     }
