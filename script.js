@@ -1,125 +1,60 @@
-/* RESET EVERYTHING */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get("name") || "SIGNAL RECEIVER"; // Default if no name
 
-/* BODY */
-body {
-    background: black;
-    color: #00ff00;
-    font-family: 'OCR A Std', 'Courier New', monospace;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    padding: 20px;
-    overflow: hidden;
-}
-
-/* CONTAINER */
-.container {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* TEXT */
-#glitch-text {
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 1.4;
-    opacity: 1;
-    text-align: center;
-    max-height: 70vh;
-    overflow-y: auto;
-    padding: 20px;
-    transition: opacity 1s ease-in-out;
-}
-
-/* BUTTON */
-#step-through {
-    background: none;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    font-size: 16px;
-    padding: 15px 30px;
-    margin-top: 20px;
-    cursor: pointer;
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
-    clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-#step-through:hover {
-    background: rgba(0, 255, 0, 0.1);
-    text-shadow: 0 0 5px #00ff00;
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-    transform: scale(1.05);
-}
-
-#step-through:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 5px #00ff00;
-}
-
-/* FADE IN */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* GLITCH EFFECT */
-@keyframes glitch {
-    0% { transform: translate(1px, -1px); }
-    25% { transform: translate(-1px, 1px); }
-    50% { transform: translate(1px, 1px); }
-    75% { transform: translate(-1px, -1px); }
-    100% { transform: translate(0, 0); }
-}
-
-.glitch {
-    animation: glitch 0.3s infinite;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    line-height: 1.5;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
-}
-
-.glitch:hover {
-    animation: none;
-    color: #ff0000;
-    text-shadow: 4px 4px 0px rgba(255, 0, 0, 0.75);
-}
-
-/* MOBILE FIX */
-@media (max-width: 500px) {
-    #glitch-text {
-        font-size: 14px;
-        max-height: 60vh;
-        overflow-y: auto;
-        padding: 5px;
+    // Approved invitees only
+    const allowedNames = ["Ruben", "Alex", "Lili", "Morta", "Ole"];
+    if (!allowedNames.includes(name) && name !== "SIGNAL RECEIVER") {
+        document.body.innerHTML = `
+            <h1 class="glitch">ACCESS DENIED</h1>
+            <p class="glitch">UNAUTHORIZED TRANSMISSION ATTEMPT DETECTED.</p>
+        `;
+        return;
     }
 
-    #step-through {
-        font-size: 12px;
-        padding: 12px 20px;
-        margin: 15px auto;
-        width: 80%;
-        max-width: 250px;
-        clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+    const messages = [
+        `WELCOME, ${name}.`,
+        `YOU HAVE BEEN CHOSEN.`,
+        `27.03 | BOLICHE UBUD`,
+        `FINAL FREQUENCY BEFORE THE WORLD GOES QUIET.`,
+        `ALL+SIDES // NINE LIVES: A NEW SERIES`,
+        `A HIDDEN TRANSMISSION. A FREQUENCY ONLY FEW WILL HEAR.`,
+        `FREQUENCY OPERATORS:`,
+        `TODJON – SYSTEM ARCHITECT`,
+        `MORTA MOR – SONIC EXPLORER`,
+        `OLE UKENA – GROOVE ENGINEER`,
+        `NO TOURISTS. NO TRENDSETTERS. NO INTERFERENCE.`,
+        `ONLY MOVEMENT. ONLY CONNECTION. ONLY THOSE WHO UNDERSTAND.`,
+        `YOU ARE HERE BECAUSE YOU WERE MEANT TO BE.`,
+        `THE SIGNAL IS OPEN—BUT ONLY FOR YOU.`,
+        `STEP THROUGH.`,
+    ];
+
+    const textContainer = document.getElementById("glitch-text");
+    const stepButton = document.getElementById("step-through");
+    let index = 0;
+
+    function typeText() {
+        if (index < messages.length) {
+            let p = document.createElement("p");
+            p.textContent = messages[index];
+            p.classList.add("glitch");
+            textContainer.appendChild(p);
+            textContainer.style.opacity = "1"; // Ensure text is visible
+            index++;
+            setTimeout(typeText, 800);
+        } else {
+            setTimeout(() => {
+                textContainer.style.transition = "opacity 1s ease-out";
+                textContainer.style.opacity = "0"; // Fade out text
+                setTimeout(() => {
+                    textContainer.innerHTML = ""; // Clear text
+                    stepButton.style.display = "block"; // Show button
+                    stepButton.style.opacity = "1";
+                }, 1000);
+            }, 2000);
+        }
     }
 
-    .container {
-        padding: 0 10px;
-    }
-}
+    typeText();
+});
