@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     stepButton.style.display = "block"; // Show button
                     stepButton.style.opacity = "1";
                 }, 2000);
-            }, 2000);
+            }, 3000);
         }
     }
 
