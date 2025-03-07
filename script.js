@@ -1,17 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get("name") || "SIGNAL RECEIVER"; // Default if no name
-
-    // Approved invitees only
-    const allowedNames = ["Ruben", "Alex", "Lili", "Morta", "Ole"];
-    if (!allowedNames.includes(name) && name !== "SIGNAL RECEIVER") {
-        document.body.innerHTML = `
-            <h1 class="glitch">ACCESS DENIED</h1>
-            <p class="glitch">UNAUTHORIZED TRANSMISSION ATTEMPT DETECTED.</p>
-        `;
-        return;
-    }
-
     const messages = [
     `WELCOME, ${name}.`,
     `THE SIGNAL HAS LOCKED ONTO YOUR FREQUENCY.`,
