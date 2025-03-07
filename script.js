@@ -52,7 +52,7 @@ body {
     padding: 15px 30px;
     margin-top: 20px;
     cursor: pointer;
-    opacity: 0;
+    opacity: 1;
     transition: all 0.3s ease-in-out;
     clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
     position: relative;
