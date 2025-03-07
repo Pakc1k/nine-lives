@@ -45,7 +45,7 @@ body {
 
 /* BUTTON */
 #step-through {
-    background: rgba(0, 255, 0, 0.05);
+    background: none;
     border: 2px solid #00ff00;
     color: #00ff00;
     font-size: 16px;
@@ -58,24 +58,13 @@ body {
     position: relative;
     text-transform: uppercase;
     letter-spacing: 2px;
-    animation: buttonPulse 2s infinite;
-    text-shadow: 0 0 5px #00ff00;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
-@keyframes buttonPulse {
-    0% {
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-        text-shadow: 0 0 5px #00ff00;
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(0, 255, 0, 0.2);
-        text-shadow: 0 0 8px #00ff00, 0 0 12px #00ff00;
-    }
-    100% {
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-        text-shadow: 0 0 5px #00ff00;
-    }
+#step-through:hover {
+    background: rgba(0, 255, 0, 0.1);
+    text-shadow: 0 0 5px #00ff00;
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    transform: scale(1.05);
 }
 
 #step-through:active {
