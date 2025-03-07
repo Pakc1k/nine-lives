@@ -9,7 +9,7 @@
 body {
     background: black;
     color: #00ff00;
-    font-family: 'OCR A Std', monospace;
+    font-family: 'OCR A Std', 'Courier New', monospace;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -89,7 +89,16 @@ body {
 
 .glitch {
     animation: glitch 0.3s infinite;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    line-height: 1.5;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.glitch:hover {
+    animation: none;
+    color: #ff0000;
+    text-shadow: 4px 4px 0px rgba(255, 0, 0, 0.75);
 }
 
 /* MOBILE FIX */
