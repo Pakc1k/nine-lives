@@ -18,12 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
     `27.03 | BOLICHE UBUD`,
     `THE FUTURE HAS ALREADY HAPPENED. YOU ARE MERELY ARRIVING.`,
     `ALL+SIDES // NINE LIVES: THE LOOP BEGINS.`,
-    `A HIDDEN TRANSMISSION. A FREQUENCY ONLY FEW WILL HEAR.`,
-    `THE CODE SHIFTS. THE STATIC CLEARS. THE PATTERN REVEALS ITSELF.`,
+    `A HIDDEN TRANSMISSION. A FREQUENCY ONLY YOU WILL HEAR.`,
+    `THE CODE SHIFTS. THE STATIC CLEARS. THE PATTERN REVEALS.`,
     `DESIGNATED FREQUENCY OPERATORS:`,
-    `TODJON – ARCHITECT OF RESISTANCE`,
-    `MORTA MOR – SONIC NAVIGATOR`,
-    `OLE UKENA – SEQUENCER OF THE UNSEEN`,
+    `TODJON (INDONESIA) – ARCHITECT OF RESISTANCE`,
+    `MORTA MOR (BERLIN) – SONIC NAVIGATOR`,
+    `OLE UKENA (BERLIN) – SEQUENCER OF THE UNSEEN`,
     `NO TOURISTS. NO OBSERVERS. NO DISTRACTIONS.`,
     `ONLY THOSE WHO FEEL IT. ONLY THOSE WHO MOVE.`,
     `YOU ARE HERE BECAUSE YOU WERE MEANT TO BE.`,
@@ -42,6 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
             p.classList.add("glitch");
             textContainer.appendChild(p);
             textContainer.style.opacity = "1"; // Ensure text is visible
+            
+            // Enhanced auto-scroll with a small delay to ensure rendering is complete
+            setTimeout(() => {
+                p.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                // Fallback in case scrollIntoView doesn't work well on some browsers
+                textContainer.scrollTop = textContainer.scrollHeight;
+            }, 50);
+            
             index++;
             setTimeout(typeText, 800);
         } else {
